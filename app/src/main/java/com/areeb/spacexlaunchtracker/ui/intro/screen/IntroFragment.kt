@@ -11,11 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import com.areeb.spacexlaunchtracker.R
 import com.areeb.spacexlaunchtracker.databinding.FragmentHomeBinding
 import com.areeb.spacexlaunchtracker.databinding.FragmentIntroBinding
+import com.areeb.spacexlaunchtracker.ui.common.fragment.BaseFragment
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.visible
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class IntroFragment : Fragment() {
+class IntroFragment : BaseFragment() {
 
     private var _binding: FragmentIntroBinding? = null
     private val binding get() = _binding!!
@@ -38,6 +39,10 @@ class IntroFragment : Fragment() {
         lifecycleScope.launch {
             delay(1000)
             animateButton()
+        }
+
+        binding.btnIntro.setOnClickListener {
+            navigate(IntroFragmentDirections.actionIntroFragmentToHomeFragment(), R.id.homeFragment)
         }
     }
 
