@@ -1,21 +1,20 @@
 package com.areeb.spacexlaunchtracker.ui.intro.screen
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.lifecycleScope
 import com.areeb.spacexlaunchtracker.R
-import com.areeb.spacexlaunchtracker.databinding.FragmentHomeBinding
 import com.areeb.spacexlaunchtracker.databinding.FragmentIntroBinding
 import com.areeb.spacexlaunchtracker.ui.common.fragment.BaseFragment
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.visible
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class IntroFragment : BaseFragment() {
 
     private var _binding: FragmentIntroBinding? = null
