@@ -10,10 +10,11 @@ import javax.inject.Inject
 class HomeRepoImp @Inject constructor(private val homeService: HomeService) : HomeRepo {
     override suspend fun getSpaceXList(): List<SpaceXListResponse> {
         return try {
-            val data = homeService.getsAllSpaceXList()
-            Log.e("checkingData", data.toString())
-            data
+            Log.e("checkingData", homeService.getsAllSpaceXList().toString())
+             homeService.getsAllSpaceXList()
+
         } catch (e: Exception) {
+            Log.e("checkingData",e.toString())
             e.printStackTrace()
             emptyList()
         }

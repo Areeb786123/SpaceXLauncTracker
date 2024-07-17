@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.lifecycleScope
 import com.areeb.spacexlaunchtracker.R
@@ -36,7 +37,7 @@ class IntroFragment : BaseFragment() {
     private fun setViews() {
         // Load the animation
         lifecycleScope.launch {
-            delay(1000)
+            delay(500)
             animateButton()
         }
 
@@ -47,9 +48,27 @@ class IntroFragment : BaseFragment() {
 
     private fun animateButton() {
         val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_up)
+        // Create an animation listener
+        val animationListener = object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+                // Optional: Code to execute when the animation starts
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.btnIntro.visible()
+
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+                // Optional: Code to execute if the animation repeats (if applicable)
+            }
+        }
+        animation.setAnimationListener(animationListener)
         // Start the animation
-        binding.btnIntro.startAnimation(animation)
-        binding.btnIntro.visible()
+        binding.imgRocket.startAnimation(animation)
+        binding.imgRocket.visible()
+
+
     }
 
     companion object {

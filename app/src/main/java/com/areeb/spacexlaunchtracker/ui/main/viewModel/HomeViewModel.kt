@@ -8,13 +8,15 @@ import androidx.lifecycle.viewModelScope
 import com.areeb.spacexlaunchtracker.data.Resource
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 import com.areeb.spacexlaunchtracker.domain.use.homeUsecase.HomeUseCase
+import com.areeb.spacexlaunchtracker.ui.common.viewModel.BaseViewModel
+import com.areeb.spacexlaunchtracker.ui.main.screens.HomeFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : ViewModel() {
+class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : BaseViewModel() {
     private val _spaceXList = MutableLiveData<List<SpaceXListResponse>>(emptyList())
     val spaceXList: LiveData<List<SpaceXListResponse>> get() = _spaceXList
 
@@ -27,6 +29,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     }
 
     private fun getAllSpaceXList() {
+        isLoading()
         viewModelScope.launch {
             homeUseCase.getAppSpaceXListUseCase.invoke().collectLatest {
                 setAllSpaceListState(it)
@@ -35,9 +38,11 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     }
 
     private fun setAllSpaceListState(resource: Resource<List<SpaceXListResponse>>) {
+        Log.e(TAG, resource.toString())
         when (resource) {
-            is Resource.Success -> {
 
+            is Resource.Success -> {
+                clearLoading()
                 _spaceXList.value = resource.data
             }
 
@@ -48,7 +53,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
             }
 
             is Resource.Loading -> {
-
+                isLoading()
             }
         }
     }

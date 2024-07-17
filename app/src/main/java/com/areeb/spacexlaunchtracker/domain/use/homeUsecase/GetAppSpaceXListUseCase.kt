@@ -1,8 +1,10 @@
 package com.areeb.spacexlaunchtracker.domain.use.homeUsecase
 
+import android.util.Log
 import com.areeb.spacexlaunchtracker.data.Resource
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 import com.areeb.spacexlaunchtracker.domain.repo.HomeRepo
+import com.areeb.spacexlaunchtracker.ui.main.viewModel.HomeViewModel
 import com.areeb.spacexlaunchtracker.utils.constants.StringConstants.Companion.SOMETHING_WENT_WRONG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
@@ -14,6 +16,7 @@ class GetAppSpaceXListUseCase @Inject constructor(private val homeRepo: HomeRepo
         return flow {
             try {
                 val data = homeRepo.getSpaceXList()
+                Log.e("Areebo",data.toString())
                 emit(Resource.Success(data))
             } catch (e: Exception) {
                 e.printStackTrace()

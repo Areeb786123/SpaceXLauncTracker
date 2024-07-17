@@ -17,17 +17,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_intro"
         android:layout_width="@dimen/dimen150"
         android:layout_height="@dimen/dimen60"
+        android:layout_marginTop="@dimen/dimen100"
+        android:layout_marginEnd="@dimen/dimen20"
         android:background="@drawable/intro_button"
         android:text="@string/start"
         android:textColor="@color/black"
         android:textSize="@dimen/text18"
-        android:visibility="gone"
         android:textStyle="normal"
+        android:visibility="gone"
         app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/img_rocket"
+        android:layout_width="@dimen/dimen200"
+        android:layout_height="@dimen/dimen200"
+        android:contentDescription="@string/image"
+        android:src="@drawable/ic_rocket"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

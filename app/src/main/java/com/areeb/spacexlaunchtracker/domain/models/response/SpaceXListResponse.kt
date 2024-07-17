@@ -1,7 +1,7 @@
 package com.areeb.spacexlaunchtracker.domain.models.response
 
 data class SpaceXListResponse(
-    val crew: Any,
+//    val crew: Any,
     val details: String,
     val flight_number: Int,
     val is_tentative: Boolean,
@@ -14,15 +14,15 @@ data class SpaceXListResponse(
     val launch_window: Int,
     val launch_year: String,
     val links: Links,
-    val mission_id: List<Any>,
+    val mission_id: List<String>,
     val mission_name: String,
     val rocket: Rocket,
-    val ships: List<Any>,
-    val static_fire_date_unix: Int,
-    val static_fire_date_utc: String,
-    val tbd: Boolean,
-    val telemetry: Telemetry,
-    val tentative_max_precision: String,
-    val timeline: Timeline,
-    val upcoming: Boolean
+//    val ships: List<Any>,
+//    val static_fire_date_unix: Int,
+//    val static_fire_date_utc: String,
+//    val tbd: Boolean,
+//    val telemetry: Telemetry,
+//    val tentative_max_precision: String,
+//    val timeline: Timeline,
+//    val upcoming: Boolean
 )

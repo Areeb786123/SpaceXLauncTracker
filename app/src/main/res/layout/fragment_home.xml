@@ -17,8 +17,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimen150"
+            android:layout_height="@dimen/dimen60"
+            android:padding="@dimen/dimen10"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_spacex_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,11 +37,34 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
         android:layout_width="match_parent"
-        android:background="@drawable/search_bar_back_ground"
         android:layout_height="@dimen/dimen40"
         android:layout_marginHorizontal="@dimen/dimen10"
+        android:background="@drawable/search_bar_back_ground"
         app:layout_constraintTop_toBottomOf="@+id/header" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_space_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen0"
+        android:layout_marginHorizontal="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen10"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        tools:listitem="@layout/item_space_list" />
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="@dimen/dimen50"
+        android:layout_height="@dimen/dimen50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

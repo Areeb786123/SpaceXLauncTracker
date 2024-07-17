@@ -55,8 +55,10 @@
             tools:text="Areeb x " />
 
         <ImageView
+            android:id="@+id/img_rocket"
             android:layout_width="@dimen/dimen150"
             android:layout_height="match_parent"
+            android:padding="@dimen/dimen10"
             android:src="@drawable/ic_rocket"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
