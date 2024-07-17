@@ -11,12 +11,15 @@ import com.bumptech.glide.Glide
 class HomeViewHolder(private val binding: ItemSpaceListBinding) :
     RecyclerView.ViewHolder(binding.root) {
     @RequiresApi(Build.VERSION_CODES.O)
-    fun bind(item: SpaceXListResponse) {
+    fun bind(item: SpaceXListResponse, onClick: (SpaceXListResponse) -> Unit) {
         with(binding) {
             tvMissionDate.text = item.launch_date_local.toCustomDateFormat()
             tvMissionName.text = item.mission_name
             tvRocketName.text = item.rocket.rocket_name
             Glide.with(binding.root).load(item.links.mission_patch).into(binding.imgRocket)
+            card.setOnClickListener {
+                onClick.invoke(item)
+            }
         }
     }
 }

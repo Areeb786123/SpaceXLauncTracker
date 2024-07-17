@@ -9,7 +9,8 @@ import com.areeb.spacexlaunchtracker.databinding.ItemSpaceListBinding
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 import com.areeb.spacexlaunchtracker.ui.main.viewHolder.HomeViewHolder
 
-class HomeAdapter : RecyclerView.Adapter<HomeViewHolder>() {
+class HomeAdapter(private val onClick: (SpaceXListResponse) -> Unit) :
+    RecyclerView.Adapter<HomeViewHolder>() {
 
     val spaceList = mutableListOf<SpaceXListResponse>()
     fun setData(list: List<SpaceXListResponse>) {
@@ -34,6 +35,6 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(spaceList[position])
+        holder.bind(spaceList[position], onClick)
     }
 }

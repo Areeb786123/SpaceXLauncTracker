@@ -6,14 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.areeb.spacexlaunchtracker.R
 import com.areeb.spacexlaunchtracker.databinding.FragmentHomeBinding
 import com.areeb.spacexlaunchtracker.domain.repoImp.HomeRepoImp
+import com.areeb.spacexlaunchtracker.ui.common.fragment.BaseFragment
 import com.areeb.spacexlaunchtracker.ui.main.adapter.HomeAdapter
 import com.areeb.spacexlaunchtracker.ui.main.viewModel.HomeViewModel
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.gone
+import com.areeb.spacexlaunchtracker.utils.extensionFunction.showToast
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -21,13 +25,19 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
 
-    private val viewModels by viewModels<HomeViewModel>()
+    private val viewModels by activityViewModels<HomeViewModel>()
     private val binding get() = _binding!!
     private val adapter by lazy {
-        HomeAdapter()
+        HomeAdapter {
+            viewModels.setCurrentMission(it)
+            navigate(
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(),
+                R.id.detailFragment
+            )
+        }
     }
 
 

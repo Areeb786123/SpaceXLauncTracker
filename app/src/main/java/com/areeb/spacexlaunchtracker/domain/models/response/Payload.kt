@@ -1,5 +1,9 @@
 package com.areeb.spacexlaunchtracker.domain.models.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Payload(
     val customers: List<String>,
     val manufacturer: String,
@@ -12,4 +16,4 @@ data class Payload(
     val payload_mass_lbs: Double,
     val payload_type: String,
     val reused: Boolean
-)
+):Parcelable

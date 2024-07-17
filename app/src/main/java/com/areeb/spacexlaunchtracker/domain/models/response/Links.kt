@@ -1,8 +1,12 @@
 package com.areeb.spacexlaunchtracker.domain.models.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Links(
     val article_link: String,
-    val flickr_images: List<Any>,
+//    val flickr_images: List<Any>,
     val mission_patch: String,
     val mission_patch_small: String,
 //    val presskit: Any,
@@ -13,4 +17,4 @@ data class Links(
     val video_link: String,
     val wikipedia: String,
     val youtube_id: String
-)
+):Parcelable

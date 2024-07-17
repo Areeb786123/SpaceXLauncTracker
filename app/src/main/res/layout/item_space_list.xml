@@ -7,6 +7,7 @@
     android:layout_marginHorizontal="@dimen/dimen10"
     android:layout_marginTop="@dimen/dimen10"
     android:alpha="10"
+    android:id="@+id/card"
     android:padding="@dimen/dimen10"
     app:cardCornerRadius="@dimen/dimen12"
     tools:cardBackgroundColor="#D6C6F3">

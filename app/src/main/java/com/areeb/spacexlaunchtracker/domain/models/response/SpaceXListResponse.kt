@@ -1,5 +1,9 @@
 package com.areeb.spacexlaunchtracker.domain.models.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class SpaceXListResponse(
 //    val crew: Any,
     val details: String,
@@ -25,4 +29,4 @@ data class SpaceXListResponse(
 //    val tentative_max_precision: String,
 //    val timeline: Timeline,
 //    val upcoming: Boolean
-)
+):Parcelable

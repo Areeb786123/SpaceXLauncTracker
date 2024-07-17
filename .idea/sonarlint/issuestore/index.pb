@@ -57,8 +57,6 @@ Rapp/src/main/java/com/areeb/spacexlaunchtracker/domain/models/response/Timeline
 Sapp/src/main/java/com/areeb/spacexlaunchtracker/domain/models/response/Telemetry.kt,f/f/ff64b829cbcc5fcbfc412c3f76d7a402d2d35693
 å
 \app/src/main/java/com/areeb/spacexlaunchtracker/domain/models/response/SpaceXListResponse.kt,8/e/8e618e29b02f43f630be45330101a1b186439afa
-o
-?app/src/main/java/com/areeb/spacexlaunchtracker/di/Injection.kt,8/1/811a2759b27309b5c5f3c6d4fe0c8876f2adf10e
 s
 Capp/src/main/java/com/areeb/spacexlaunchtracker/di/NetworkModule.kt,c/f/cf025cb95b18e9629f670307c32db7531c7eab13
 w
@@ -71,8 +69,6 @@ s
 Capp/src/main/java/com/areeb/spacexlaunchtracker/di/RepoInjection.kt,0/6/06ab17825a6bfa8b029968cfc453831d2540859b
 Ö
 Uapp/src/main/java/com/areeb/spacexlaunchtracker/domain/use/homeUsecase/HomeUseCase.kt,7/a/7ac85af980da8eecf4c6d22a5bc65781a073ffa8
-ç
-]app/src/main/java/com/areeb/spacexlaunchtracker/domain/use/homeUsecase/GetAppSpaceXListUse.kt,6/b/6b30743063724e2667aa43f4452afe69967db502
 ë
 aapp/src/main/java/com/areeb/spacexlaunchtracker/domain/use/homeUsecase/GetAppSpaceXListUseCase.kt,3/d/3d6a191cd7c112c1a180342af39b2c789c297069
 p
@@ -89,11 +85,11 @@ Qapp/src/main/java/com/areeb/spacexlaunchtracker/domain/models/response/Payload.
 Papp/src/main/java/com/areeb/spacexlaunchtracker/domain/models/response/Rocket.kt,1/b/1b7c8df9d0b5e2bd047e9a632d8441002d91e575
 ~
 Napp/src/main/java/com/areeb/spacexlaunchtracker/ui/main/adapter/HomeAdapter.kt,b/4/b400755e37c168bc3a14b8f71fa249efb7a1b0d0
-Ö
-Uapp/src/main/java/com/areeb/spacexlaunchtracker/ui/main/viewHolder/HomeViewHoldeer.kt,8/4/84d56ad30619deceede24bc2b39211054155ad7c
 Ñ
 Tapp/src/main/java/com/areeb/spacexlaunchtracker/ui/main/viewHolder/HomeViewHolder.kt,5/e/5e6a2a48c91cdafbb774498bec67cbdb4d94f58a
 ó
 gapp/src/main/java/com/areeb/spacexlaunchtracker/utils/extensionFunction/DateAndTimeExtensionFunction.kt,4/2/423fbf2e506309952ee82b2dc0b1a44c60fe181a
 Ñ
 Tapp/src/main/java/com/areeb/spacexlaunchtracker/ui/common/viewModel/BaseViewModel.kt,9/f/9f2174f02974f24b7b19a5037d51f1c473443ba0
+à
+Xapp/src/main/java/com/areeb/spacexlaunchtracker/ui/detailScreen/screen/DetailFragment.kt,0/4/040b2b8b17c9daa03721370a44c89f6aca1b6e0c

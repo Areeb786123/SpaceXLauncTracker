@@ -15,4 +15,5 @@ open class BaseFragment : Fragment() {
             findNavController().navigate(resId, bundle)
         }
     }
+
 }

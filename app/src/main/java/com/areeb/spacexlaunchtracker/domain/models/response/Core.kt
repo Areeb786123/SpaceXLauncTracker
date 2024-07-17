@@ -1,10 +1,12 @@
 package com.areeb.spacexlaunchtracker.domain.models.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Core(
-    val block: Any,
-
+//    val block: Any,
     val core_serial: String,
     val flight: Int,
     val gridfins: Boolean,
@@ -16,4 +18,4 @@ data class Core(
 //    val landingVehicle: Any,
     val legs: Boolean,
     val reused: Boolean
-)
+) : Parcelable

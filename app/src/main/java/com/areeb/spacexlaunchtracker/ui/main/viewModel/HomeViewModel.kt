@@ -20,8 +20,19 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     private val _spaceXList = MutableLiveData<List<SpaceXListResponse>>(emptyList())
     val spaceXList: LiveData<List<SpaceXListResponse>> get() = _spaceXList
 
+    private val _currentMission = MutableLiveData<SpaceXListResponse?>(null)
+    val currentMission: LiveData<SpaceXListResponse?> get() = _currentMission
+
     companion object {
         private const val TAG = "homeViewModel"
+    }
+
+    fun setCurrentMission(mission: SpaceXListResponse) {
+        _currentMission.value = mission
+    }
+
+    fun clearMission() {
+        _currentMission.value = null
     }
 
     init {
@@ -31,7 +42,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     private fun getAllSpaceXList() {
         isLoading()
         viewModelScope.launch {
-            homeUseCase.getAppSpaceXListUseCase.invoke().collectLatest {
+            homeUseCase.getAppSpaceXListUseCase.invoke().collect {
                 setAllSpaceListState(it)
             }
         }
