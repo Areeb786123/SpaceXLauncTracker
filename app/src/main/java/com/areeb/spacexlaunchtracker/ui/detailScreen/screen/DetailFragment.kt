@@ -1,5 +1,7 @@
 package com.areeb.spacexlaunchtracker.ui.detailScreen.screen
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -77,13 +79,24 @@ class DetailFragment : BaseFragment() {
             tvMissionDate.text = currentMission?.launch_date_local?.toCustomDateFormat()
             tvMissionName.text = currentMission?.mission_name
             currentMission?.let {
-                tvRocketId.text = it.rocket.rocket_id
-                tvRocketName.text = it.rocket.rocket_name
-                tvRocketType.text = it.rocket.rocket_type
-                tvPayloadId.text = it.rocket.second_stage.payloads[0].payload_id
-                tvReused.text = it.rocket.second_stage.payloads[0].reused.toString()
-                tvOrbit.text = it.rocket.second_stage.payloads[0].orbit
+                tvPayloadMass.text =
+                    "Payload Mass in kg - ${it.rocket.second_stage.payloads[0].payload_mass_kg}"
+                tvRocketId.text = "Rocket Id - ${it.rocket.rocket_id}"
+                tvRocketName.text = "Rocket Name -${it.rocket.rocket_name}"
+                tvRocketType.text = "Rocket Type - ${it.rocket.rocket_type}"
+                tvPayloadId.text = "Payload Id - ${it.rocket.second_stage.payloads[0].payload_id}"
+                tvReused.text = "ReUsed - ${it.rocket.second_stage.payloads[0].reused.toString()}"
+                tvOrbit.text = "Orbit - ${it.rocket.second_stage.payloads[0].orbit}"
                 tvSiteAddress.text = it.launch_site.site_name_long
+            }
+
+            tvReadMore.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                if (currentMission?.links?.article_link?.isNotEmpty() == true) {
+                    intent.data = Uri.parse(currentMission?.links?.article_link)
+                }
+
+                startActivity(intent)
             }
 
         }

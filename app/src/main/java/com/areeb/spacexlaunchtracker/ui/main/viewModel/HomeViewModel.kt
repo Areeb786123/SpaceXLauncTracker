@@ -41,9 +41,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
         _currentMission.value = null
     }
 
-    init {
-        getAllSpaceXList()
-    }
+
 
     fun getAllSpaceXList() {
         isLoading()
