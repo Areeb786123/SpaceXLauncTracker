@@ -2,12 +2,12 @@ package com.areeb.spacexlaunchtracker.domain.models.entitiy
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 
-@Entity(tableName = "spaceEntity")
-data class SpaceEntity(
+
+@Entity(tableName = "cachedEntity")
+data class CachedEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int?,
+    val id: Int? = null,
     val rocket: SpaceXListResponse
 )

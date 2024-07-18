@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.areeb.spacexlaunchtracker.data.locale.appDataBase.AppDataBase
 import com.areeb.spacexlaunchtracker.data.locale.dao.FavDao
+import com.areeb.spacexlaunchtracker.data.locale.dao.SpaceXListDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,4 +27,9 @@ object LocaleInjection {
         return appDataBase.favDao()
     }
 
+    @Singleton
+    @Provides
+    fun provideSpaceXDao(appDataBase: AppDataBase): SpaceXListDao {
+        return appDataBase.cachedDao()
+    }
 }

@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.areeb.spacexlaunchtracker.data.Resource
+import com.areeb.spacexlaunchtracker.data.locale.appDataBase.AppDataBase
+import com.areeb.spacexlaunchtracker.domain.models.entitiy.CachedEntity
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 import com.areeb.spacexlaunchtracker.domain.use.homeUsecase.HomeUseCase
 import com.areeb.spacexlaunchtracker.ui.common.viewModel.BaseViewModel
@@ -13,10 +15,14 @@ import com.areeb.spacexlaunchtracker.ui.main.screens.HomeFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : BaseViewModel() {
+class HomeViewModel @Inject constructor(
+    private val homeUseCase: HomeUseCase,
+    private val appDataBase: AppDataBase
+) : BaseViewModel() {
     private val _spaceXList = MutableLiveData<List<SpaceXListResponse>>(emptyList())
     val spaceXList: LiveData<List<SpaceXListResponse>> get() = _spaceXList
 
@@ -30,7 +36,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
 
     private val _backToFav = MutableLiveData(false)
 
-    fun getIsFav():Boolean? {
+    fun getIsFav(): Boolean? {
         return _backToFav.value
     }
 
@@ -54,6 +60,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
         viewModelScope.launch {
             homeUseCase.getAppSpaceXListUseCase.invoke().collect {
                 setAllSpaceListState(it)
+
             }
         }
     }
@@ -64,6 +71,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
 
             is Resource.Success -> {
                 clearLoading()
+                cachedData(resource.data)
                 _spaceXList.value = resource.data
             }
 
@@ -79,6 +87,33 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
         }
     }
 
+    private fun cachedData(data: List<SpaceXListResponse>) {
+        val caching = mutableListOf<CachedEntity>()
+        viewModelScope.launch {
+            caching.clear()
+            appDataBase.cachedDao().clearCachedData()
+            data.forEach {
+                caching.add(CachedEntity(rocket = it))
+            }
+            appDataBase.cachedDao().saveList(caching)
+        }
+
+    }
+
+    fun test() {
+        viewModelScope.launch {
+            try {
+                appDataBase.cachedDao().cachedEntity().forEach {
+                    Log.e("cachedData", "${it.rocket.flight_number}")
+                }
+            } catch (e: Exception) {
+                Log.e("cachedData", "${e.printStackTrace()} + mesage ${e.message}")
+
+            }
+
+        }
+
+    }
 
     fun filterList(query: String) {
         // Log the current query

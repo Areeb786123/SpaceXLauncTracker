@@ -6,10 +6,12 @@ import androidx.room.TypeConverters
 import com.areeb.spacexlaunchtracker.data.locale.appDataBase.AppDataBase.Companion.VERSION_ONE
 import com.areeb.spacexlaunchtracker.data.locale.converts.Converters
 import com.areeb.spacexlaunchtracker.data.locale.dao.FavDao
+import com.areeb.spacexlaunchtracker.data.locale.dao.SpaceXListDao
+import com.areeb.spacexlaunchtracker.domain.models.entitiy.CachedEntity
 import com.areeb.spacexlaunchtracker.domain.models.entitiy.SpaceEntity
 
 
-@Database(entities = [SpaceEntity::class], version = VERSION_ONE)
+@Database(entities = [SpaceEntity::class, CachedEntity::class], version = VERSION_ONE)
 @TypeConverters(Converters::class)
 abstract class AppDataBase : RoomDatabase() {
     companion object {
@@ -17,4 +19,5 @@ abstract class AppDataBase : RoomDatabase() {
     }
 
     abstract fun favDao(): FavDao
+    abstract  fun cachedDao():SpaceXListDao
 }
