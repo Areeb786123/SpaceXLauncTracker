@@ -10,11 +10,13 @@ import com.areeb.spacexlaunchtracker.databinding.ItemSpaceListBinding
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 import com.areeb.spacexlaunchtracker.ui.main.viewHolder.HomeViewHolder
 
-class HomeAdapter(private val onClick: (SpaceXListResponse) -> Unit) :
+class HomeAdapter(private val onClick: (SpaceXListResponse, Boolean) -> Unit) :
     RecyclerView.Adapter<HomeViewHolder>() {
 
     private val spaceList = mutableListOf<SpaceXListResponse>()
-    private val colorList = listOf("#E7B5AB", "#E2E7AB","#9AC6CE","#9ACEA2", "#B89ACE", "#CE9A9A", "#9AB9CE")
+    private val colorList =
+        listOf("#E7B5AB", "#E2E7AB", "#9AC6CE", "#9ACEA2", "#B89ACE", "#CE9A9A", "#9AB9CE")
+
     fun setData(list: List<SpaceXListResponse>) {
         spaceList.clear()
         spaceList.addAll(list)

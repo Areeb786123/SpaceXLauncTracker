@@ -29,7 +29,7 @@
         <ImageView
             android:layout_width="@dimen/dimen26"
             android:layout_height="@dimen/dimen26"
-            android:src="@drawable/ic_save"
+            android:src="@drawable/ic_deep"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

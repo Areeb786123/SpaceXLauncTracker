@@ -26,12 +26,15 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
     private val viewModels by activityViewModels<HomeViewModel>()
     private val binding get() = _binding!!
     private val adapter by lazy {
-        HomeAdapter {
-            viewModels.setCurrentMission(it)
-            navigate(
-                HomeFragmentDirections.actionHomeFragmentToDetailFragment(),
-                R.id.detailFragment
-            )
+        HomeAdapter { data, isFav ->
+            viewModels.setCurrentMission(data)
+            if (!isFav) {
+                navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(),
+                    R.id.detailFragment
+                )
+            }
+
         }
     }
 

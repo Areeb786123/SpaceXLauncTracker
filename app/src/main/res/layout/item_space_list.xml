@@ -2,12 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen130"
     android:layout_marginHorizontal="@dimen/dimen10"
     android:layout_marginTop="@dimen/dimen10"
     android:alpha="10"
-    android:id="@+id/card"
     android:padding="@dimen/dimen10"
     app:cardCornerRadius="@dimen/dimen12"
     tools:cardBackgroundColor="#D6C6F3">
@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen10"
             android:fontFamily="@font/alfa_slab_one"
             android:textColor="@color/black"
             android:textSize="@dimen/text16"
@@ -54,6 +55,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_mission_name"
             tools:text="Areeb x " />
+
+        <ImageView
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen10"
+            android:src="@drawable/ic_save"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/red" />
 
         <ImageView
             android:id="@+id/img_rocket"
