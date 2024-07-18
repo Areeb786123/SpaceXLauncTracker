@@ -23,6 +23,12 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     private val _currentMission = MutableLiveData<SpaceXListResponse?>(null)
     val currentMission: LiveData<SpaceXListResponse?> get() = _currentMission
 
+    private val _query = MutableLiveData("")
+    val query: LiveData<String> get() = _query
+
+    private var originalList: List<SpaceXListResponse> = emptyList()
+
+
     companion object {
         private const val TAG = "homeViewModel"
     }
@@ -39,7 +45,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
         getAllSpaceXList()
     }
 
-    private fun getAllSpaceXList() {
+    fun getAllSpaceXList() {
         isLoading()
         viewModelScope.launch {
             homeUseCase.getAppSpaceXListUseCase.invoke().collect {
@@ -67,5 +73,32 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
                 isLoading()
             }
         }
+    }
+
+
+     fun filterList(query: String) {
+         // Log the current query
+         Log.d("FilterList", "Filtering with query: $query")
+
+         // Initialize originalList if it's empty
+         if (originalList.isEmpty()) {
+             originalList = _spaceXList.value ?: emptyList()
+             Log.d("FilterList", "Initialized original list with ${originalList.size} items")
+         }
+
+         // Filter the list based on the query
+         val filteredList = if (query.isEmpty()) {
+             originalList
+         } else {
+             originalList.filter {
+                 it.mission_name.contains(query, ignoreCase = true)
+             }
+         }
+
+         // Log the size of the filtered list
+         Log.d("FilterList", "Filtered list contains ${filteredList.size} items")
+
+         // Update the LiveData with the filtered list
+         _spaceXList.value = filteredList
     }
 }

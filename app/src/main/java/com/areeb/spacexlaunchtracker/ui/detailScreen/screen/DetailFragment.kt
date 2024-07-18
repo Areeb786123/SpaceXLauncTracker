@@ -100,17 +100,16 @@ class DetailFragment : BaseFragment() {
         webSettings.javaScriptEnabled = true
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
 
-//        videoUrl?.let {
-        val html = """
+        if (currentMission?.links?.youtube_id?.isNotEmpty() == true) {
+            val html = """
             <html>
             <body style="margin:0;padding:0;">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cdLITgWKe_0" frameborder="1" ></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${currentMission!!.links.youtube_id}" frameborder="0" ></iframe>
             </body>
             </html>
         """.trimIndent()
-
-        binding.youtubePlayerWebview.loadDataWithBaseURL(null, html, "text/html", "utf-8", null)
-//        }
+            binding.youtubePlayerWebview.loadDataWithBaseURL(null, html, "text/html", "utf-8", null)
+        }
     }
 
     companion object {

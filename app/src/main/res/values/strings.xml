@@ -6,4 +6,5 @@
     <string name="start">Start</string>
     <string name="rocket_details">Rocket Details</string>
     <string name="payload_detail">Payload Detail</string>
+    <string name="search_mission_name">Search Mission Name</string>
 </resources>
