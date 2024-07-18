@@ -1,5 +1,6 @@
 package com.areeb.spacexlaunchtracker.ui.main.viewHolder
 
+import android.graphics.Color
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,12 @@ import com.bumptech.glide.Glide
 class HomeViewHolder(private val binding: ItemSpaceListBinding) :
     RecyclerView.ViewHolder(binding.root) {
     @RequiresApi(Build.VERSION_CODES.O)
-    fun bind(item: SpaceXListResponse, onClick: (SpaceXListResponse) -> Unit) {
+    fun bind(
+        item: SpaceXListResponse,
+        onClick: (SpaceXListResponse) -> Unit,
+        colorList: List<String>,
+        size: Int
+    ) {
         with(binding) {
             tvMissionDate.text = item.launch_date_local.toCustomDateFormat()
             tvMissionName.text = item.mission_name
@@ -20,6 +26,7 @@ class HomeViewHolder(private val binding: ItemSpaceListBinding) :
             card.setOnClickListener {
                 onClick.invoke(item)
             }
+            card.setCardBackgroundColor(Color.parseColor(colorList[adapterPosition % 7]))
         }
     }
 }
