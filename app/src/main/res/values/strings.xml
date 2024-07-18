@@ -8,4 +8,6 @@
     <string name="payload_detail">Payload Detail</string>
     <string name="search_mission_name">Search Mission Name</string>
     <string name="readmore">readMore</string>
+    <string name="favorites_launches">Favorites Launches</string>
+    <string name="no_fav_launches_found">No Fav launches found 🤨</string>
 </resources>

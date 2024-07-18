@@ -27,9 +27,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="@dimen/dimen26"
-            android:layout_height="@dimen/dimen26"
+            android:id="@+id/btn_save"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
             android:src="@drawable/ic_deep"
+            android:layout_marginEnd="@dimen/dimen10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

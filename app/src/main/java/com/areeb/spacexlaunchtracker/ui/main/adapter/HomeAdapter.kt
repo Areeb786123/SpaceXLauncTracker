@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.areeb.spacexlaunchtracker.R
 import com.areeb.spacexlaunchtracker.databinding.ItemSpaceListBinding
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 import com.areeb.spacexlaunchtracker.ui.main.viewHolder.HomeViewHolder
 
-class HomeAdapter(private val onClick: (SpaceXListResponse, Boolean) -> Unit) :
+class HomeAdapter(private val onClick: (SpaceXListResponse, Boolean) -> Unit, private val showDelete: Boolean) :
     RecyclerView.Adapter<HomeViewHolder>() {
 
     private val spaceList = mutableListOf<SpaceXListResponse>()
@@ -39,6 +38,6 @@ class HomeAdapter(private val onClick: (SpaceXListResponse, Boolean) -> Unit) :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(spaceList[position], onClick, colorList, spaceList.size)
+        holder.bind(spaceList[position], onClick, colorList, showDelete)
     }
 }
