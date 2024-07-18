@@ -6,15 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.areeb.spacexlaunchtracker.R
 import com.areeb.spacexlaunchtracker.databinding.FragmentHomeBinding
+import com.areeb.spacexlaunchtracker.domain.models.entitiy.SpaceEntity
 import com.areeb.spacexlaunchtracker.ui.common.fragment.BaseFragment
+import com.areeb.spacexlaunchtracker.ui.fav.viewModel.FavViewModel
 import com.areeb.spacexlaunchtracker.ui.main.adapter.HomeAdapter
 import com.areeb.spacexlaunchtracker.ui.main.viewModel.HomeViewModel
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.gone
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.hide
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.hideKeyboard
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.showKeyboard
+import com.areeb.spacexlaunchtracker.utils.extensionFunction.showToast
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.visible
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,19 +27,24 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment(), View.OnClickListener {
     private var _binding: FragmentHomeBinding? = null
 
+
     private val viewModels by activityViewModels<HomeViewModel>()
+    private val favViewModel by viewModels<FavViewModel>()
     private val binding get() = _binding!!
     private val adapter by lazy {
-        HomeAdapter { data, isFav ->
+        HomeAdapter({ data, isFav ->
             viewModels.setCurrentMission(data)
             if (!isFav) {
                 navigate(
                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(),
                     R.id.detailFragment
                 )
+            } else {
+                favViewModel.addFav(SpaceEntity(rocket = data))
+                showToast("saved 👍🏻")
             }
 
-        }
+        }, false)
     }
 
 
@@ -95,6 +104,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
 
     private fun setOnClickListener() {
         binding.searchDisable.setOnClickListener(this)
+        binding.btnSave.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -107,6 +117,13 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
                     binding.search.isIconified = false
                     binding.search.requestFocus()
                     search.showKeyboard()
+                }
+
+                btnSave.id -> {
+                    navigate(
+                        HomeFragmentDirections.actionHomeFragmentToFavFragment(),
+                        R.id.favFragment
+                    )
                 }
 
                 else -> {

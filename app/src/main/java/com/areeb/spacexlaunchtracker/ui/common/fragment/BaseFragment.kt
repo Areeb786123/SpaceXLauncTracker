@@ -1,6 +1,7 @@
 package com.areeb.spacexlaunchtracker.ui.common.fragment
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
@@ -23,5 +24,21 @@ open class BaseFragment : Fragment() {
             findNavController().navigate(resId, bundle, navOptions)
         }
     }
+
+    open fun onBackKeyPress(navDirections: NavDirections, id :Int) {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Navigate back to HomeFragment
+
+                    navigate(
+                        navDirections,
+                        id
+                    )
+                }
+            })
+    }
+
 
 }

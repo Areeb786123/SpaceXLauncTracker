@@ -28,19 +28,25 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
 
     private var originalList: List<SpaceXListResponse> = emptyList()
 
+    private val _backToFav = MutableLiveData(false)
+
+    fun getIsFav():Boolean? {
+        return _backToFav.value
+    }
+
 
     companion object {
         private const val TAG = "homeViewModel"
     }
 
-    fun setCurrentMission(mission: SpaceXListResponse) {
+    fun setCurrentMission(mission: SpaceXListResponse, backToFavScreen: Boolean = false) {
         _currentMission.value = mission
+        _backToFav.value = backToFavScreen
     }
 
     fun clearMission() {
         _currentMission.value = null
     }
-
 
 
     fun getAllSpaceXList() {
@@ -74,29 +80,29 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     }
 
 
-     fun filterList(query: String) {
-         // Log the current query
-         Log.d("FilterList", "Filtering with query: $query")
+    fun filterList(query: String) {
+        // Log the current query
+        Log.d("FilterList", "Filtering with query: $query")
 
-         // Initialize originalList if it's empty
-         if (originalList.isEmpty()) {
-             originalList = _spaceXList.value ?: emptyList()
-             Log.d("FilterList", "Initialized original list with ${originalList.size} items")
-         }
+        // Initialize originalList if it's empty
+        if (originalList.isEmpty()) {
+            originalList = _spaceXList.value ?: emptyList()
+            Log.d("FilterList", "Initialized original list with ${originalList.size} items")
+        }
 
-         // Filter the list based on the query
-         val filteredList = if (query.isEmpty()) {
-             originalList
-         } else {
-             originalList.filter {
-                 it.mission_name.contains(query, ignoreCase = true)
-             }
-         }
+        // Filter the list based on the query
+        val filteredList = if (query.isEmpty()) {
+            originalList
+        } else {
+            originalList.filter {
+                it.mission_name.contains(query, ignoreCase = true)
+            }
+        }
 
-         // Log the size of the filtered list
-         Log.d("FilterList", "Filtered list contains ${filteredList.size} items")
+        // Log the size of the filtered list
+        Log.d("FilterList", "Filtered list contains ${filteredList.size} items")
 
-         // Update the LiveData with the filtered list
-         _spaceXList.value = filteredList
+        // Update the LiveData with the filtered list
+        _spaceXList.value = filteredList
     }
 }

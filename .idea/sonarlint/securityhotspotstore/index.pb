@@ -93,3 +93,17 @@ gapp/src/main/java/com/areeb/spacexlaunchtracker/utils/extensionFunction/DateAnd
 Tapp/src/main/java/com/areeb/spacexlaunchtracker/ui/common/viewModel/BaseViewModel.kt,9/f/9f2174f02974f24b7b19a5037d51f1c473443ba0
 ˆ
 Xapp/src/main/java/com/areeb/spacexlaunchtracker/ui/detailScreen/screen/DetailFragment.kt,0/4/040b2b8b17c9daa03721370a44c89f6aca1b6e0c
+y
+Iapp/src/main/java/com/areeb/spacexlaunchtracker/data/locale/dao/FavDao.kt,7/4/741dc16af53f795b4d7bdcfe4798d6d64e3de642
+…
+Uapp/src/main/java/com/areeb/spacexlaunchtracker/domain/models/entitiy/SpaceEntiity.kt,a/4/a490576f4357d196320d45ba5a3526d902186dbe
+†
+Vapp/src/main/java/com/areeb/spacexlaunchtracker/data/locale/appDataBase/AppDataBase.kt,4/6/46e90b282740a579c49430c3440d7ad55311ca60
+u
+Eapp/src/main/java/com/areeb/spacexlaunchtracker/di/LocaleInjection.kt,3/b/3b1063b4a906bc7b7dd6e3c6ce80629a5120215f
+‚
+Rapp/src/main/java/com/areeb/spacexlaunchtracker/data/locale/converts/Converters.kt,f/a/fa574b48b04b2ca4fd7fd4a03d7e0020dfbbd8e0
+|
+Lapp/src/main/java/com/areeb/spacexlaunchtracker/ui/fav/screen/FavFragment.kt,9/5/9521c24eb567aabc54f06de05bc157f3c1e70c05
+€
+Papp/src/main/java/com/areeb/spacexlaunchtracker/ui/fav/viewModel/FavViewModel.kt,1/1/1105bf787f3f561cc15ccde7e1f7c7b2cd455c88

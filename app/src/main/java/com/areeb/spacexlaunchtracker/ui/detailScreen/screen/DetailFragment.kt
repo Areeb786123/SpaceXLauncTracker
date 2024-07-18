@@ -16,6 +16,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
 import com.areeb.spacexlaunchtracker.MainActivity
 import com.areeb.spacexlaunchtracker.R
@@ -45,7 +46,10 @@ class DetailFragment : BaseFragment() {
         // Inflate the layout for this fragment
         // Handle back press
         _binding = FragmentDetailBinding.inflate(layoutInflater)
-        onBackKeyPress()
+        onBackKeyPress(
+            if (viewModel.getIsFav() == false) DetailFragmentDirections.actionDetailFragmentToHomeFragment() else DetailFragmentDirections.actionDetailFragmentToFavFragment(),
+            if (viewModel.getIsFav() == false) R.id.homeFragment else R.id.favFragment
+        )
         return _binding!!.root
     }
 
@@ -55,21 +59,6 @@ class DetailFragment : BaseFragment() {
         Log.e(TAG, currentMission.toString())
         youTubeIframePlayer()
         setViews()
-    }
-
-    private fun onBackKeyPress() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    // Navigate back to HomeFragment
-
-                    navigate(
-                        DetailFragmentDirections.actionDetailFragmentToHomeFragment(),
-                        R.id.homeFragment
-                    )
-                }
-            })
     }
 
 
