@@ -40,7 +40,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
                     R.id.detailFragment
                 )
             } else {
-                favViewModel.addFav(SpaceEntity(rocket = data))
+                favViewModel.addFav(SpaceEntity(id = data.flight_number, rocket = data))
                 showToast("saved 👍🏻")
             }
 
@@ -126,6 +126,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
                     )
                 }
 
+
                 else -> {
 
                 }
@@ -145,7 +146,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
                     viewModels.filterList(newText)
-                    if (it.isNullOrEmpty()) {
+                    if (newText.isEmpty()) {
                         binding.let { di ->
                             di.search.hide()
                             di.searchDisable.visible()

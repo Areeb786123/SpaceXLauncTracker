@@ -3,6 +3,7 @@ package com.areeb.spacexlaunchtracker.data.locale.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.areeb.spacexlaunchtracker.domain.models.entitiy.SpaceEntity
 import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
@@ -11,7 +12,7 @@ import com.areeb.spacexlaunchtracker.domain.models.response.SpaceXListResponse
 @Dao
 interface FavDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun saveFav(spaceXListResponse: SpaceEntity)
 
     @Delete

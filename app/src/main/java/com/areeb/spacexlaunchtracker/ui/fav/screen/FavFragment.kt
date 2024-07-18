@@ -17,7 +17,9 @@ import com.areeb.spacexlaunchtracker.ui.fav.viewModel.FavViewModel
 import com.areeb.spacexlaunchtracker.ui.main.adapter.HomeAdapter
 import com.areeb.spacexlaunchtracker.ui.main.screens.HomeFragmentDirections
 import com.areeb.spacexlaunchtracker.ui.main.viewModel.HomeViewModel
+import com.areeb.spacexlaunchtracker.utils.extensionFunction.gone
 import com.areeb.spacexlaunchtracker.utils.extensionFunction.showToast
+import com.areeb.spacexlaunchtracker.utils.extensionFunction.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,9 +38,9 @@ class FavFragment : BaseFragment() {
                     R.id.detailFragment
                 )
             } else {
-                viewModel.removeFav(SpaceEntity(rocket = data))
+                viewModel.removeFav(SpaceEntity(id = data.flight_number, rocket = data))
                 showToast("deleted ")
-                viewModel.populateList()
+
             }
         }, true)
     }
@@ -61,12 +63,24 @@ class FavFragment : BaseFragment() {
 
     private fun observer() {
         viewModel.favXList.observe(viewLifecycleOwner) {
-            val data = mutableListOf<SpaceXListResponse>()
-            data.clear()
-            it.forEach { sp ->
-                data.add(sp.rocket)
+            binding.let { da ->
+                da.rvFav.visible()
+                da.tvEmpty.gone()
             }
-            adapter.setData(data)
+            if (it.isNotEmpty()) {
+                val data = mutableListOf<SpaceXListResponse>()
+                data.clear()
+                it.forEach { sp ->
+                    data.add(sp.rocket)
+                }
+                adapter.setData(data)
+            } else {
+                binding.let { da ->
+                    da.rvFav.gone()
+                    da.tvEmpty.visible()
+                }
+            }
+
         }
     }
 

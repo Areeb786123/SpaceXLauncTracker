@@ -12,6 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -46,13 +48,18 @@ class FavViewModel @Inject constructor(private val appDataBase: AppDataBase) : B
 
     fun removeFav(safeEntity: SpaceEntity) {
         viewModelScope.launch {
-            try {
-                appDataBase.favDao().deleteFav(safeEntity)
-            } catch (e: Exception) {
-                Log.e("deleteBase", e.toString())
-                e.printStackTrace()
-            }
+            runBlocking {
+                try {
+                    Log.e("deleteBase", safeEntity.toString())
+                    appDataBase.favDao().deleteFav(safeEntity)
+                    getSavedList()
+                    Log.e("deleteBase", "done")
 
+                } catch (e: Exception) {
+                    Log.e("deleteBase", e.toString())
+                    e.printStackTrace()
+                }
+            }
         }
     }
 
